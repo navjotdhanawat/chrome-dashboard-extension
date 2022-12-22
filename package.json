@@ -1,5 +1,5 @@
 {
-  "name": "react-browser-extension",
+  "name": "chrome-dashboard-extension",
   "version": "0.1.0",
   "private": true,
   "scripts": {
