@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "version": "1.0",
+  "name": "Another Chrome Dashboard",
+  "description": "Another Chrome Dashboard",
+  "author": "Navjot Dhanawat <navjotdhanawat@gmail.com>",
+  "homepage_url": "https://github.com/abstractalgo/react-browser-extension",
+  "icons": {
+    "16": "icon.png",
+    "32": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "topSites",
+    "history"
+  ],
+  "action": {},
+  "background": {
+    "service_worker": "background.js"
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}
