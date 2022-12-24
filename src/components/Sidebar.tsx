@@ -1,7 +1,7 @@
 import React, { FC, lazy, Suspense, useContext, useState } from "react";
 import { FaPlusCircle, FaTimesCircle } from "react-icons/fa";
-import { Components, widgets } from "./constant";
-import { GlobalContext } from "./context";
+import { Components, widgets } from "../util/constant";
+import { GlobalContext } from "../util/context";
 import { useSelector, useDispatch } from "react-redux";
 
 export const Sidebar: FC = () => {

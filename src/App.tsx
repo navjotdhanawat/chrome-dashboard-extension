@@ -1,24 +1,24 @@
 import React, { FC, lazy, Suspense, useEffect, useState } from "react";
 import backgroundImage from "./assets/bg.jpg";
-import Quote from "./Quote";
+import Quote from "./components/Quote";
 import Widgets from "./widgets";
-import { GlobalContext } from "./context";
-import { Sidebar } from "./Sidebar";
+import { GlobalContext } from "./util/context";
+import { Sidebar } from "./components/Sidebar";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store";
-import DraggableStory from "./DraggableStory";
+import DraggableStory from "./dnd/DraggableStory";
 import { getImages } from "./api/unsplash";
-import { Components, defaultImageUrl } from "./constant";
-import { Resizeable } from "./Test";
+import { Components, defaultImageUrl } from "./util/constant";
+import { Resizeable } from "./components/Resizeable";
 import Todo from "./todo";
-import { Popover } from "./Popover";
+import { Popover } from "./components/Popover";
 import { ThemeProvider } from "./todo/ThemeContext";
 import Clock from "./components/Clock";
 import { PersistGate } from "redux-persist/integration/react";
 import Calendar from "./components/Calendar";
 import { useSelector } from "react-redux";
 import { widgetReducerType } from "./reducers/widget";
-import { TopSites } from "./TopSites";
+import { TopSites } from "./components/TopSites";
 
 const App: FC = () => {
   const [vpHeight, setVpHeight] = useState(window.innerHeight);

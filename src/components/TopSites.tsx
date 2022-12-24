@@ -7,8 +7,8 @@ import React, {
   useState,
 } from "react";
 import { FaPlusCircle, FaTimesCircle } from "react-icons/fa";
-import { Components, widgets } from "./constant";
-import { GlobalContext } from "./context";
+import { Components, widgets } from "../util/constant";
+import { GlobalContext } from "../util/context";
 import { useSelector, useDispatch } from "react-redux";
 
 export const TopSites: FC = () => {
@@ -19,7 +19,7 @@ export const TopSites: FC = () => {
   const [sites, setSites] = useState<any>([]);
 
   useEffect(() => {
-    chrome.topSites.get(setSites);
+    // chrome.topSites.get(setSites);
   }, []);
 
   return (

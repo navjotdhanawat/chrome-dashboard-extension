@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback } from 'react';
+import React, { FC, useState, useCallback } from "react";
 import {
   DndContext,
   closestCenter,
@@ -10,16 +10,22 @@ import {
   DragStartEvent,
   DragEndEvent,
   DroppableContainer,
-} from '@dnd-kit/core';
-import { arrayMove, SortableContext, rectSortingStrategy } from '@dnd-kit/sortable';
-import Grid from './Grid';
-import SortableItem from './SortableItem';
-import Item from './Item';
-import Clock from '../components/Clock';
-import Test from '../DraggableStory';
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  rectSortingStrategy,
+} from "@dnd-kit/sortable";
+import Grid from "./Grid";
+import SortableItem from "./SortableItem";
+import Item from "./Item";
+import Clock from "../components/Clock";
+import Test from "../dnd/DraggableStory";
 
 const Widgets: FC = () => {
-  const [items, setItems] = useState(Array.from({ length: 16 }, (_, i) => (i + 1).toString()));
+  const [items, setItems] = useState(
+    Array.from({ length: 16 }, (_, i) => (i + 1).toString())
+  );
   const [activeId, setActiveId] = useState<string | null>(null);
   const sensors = useSensors(useSensor(MouseSensor), useSensor(TouchSensor));
 

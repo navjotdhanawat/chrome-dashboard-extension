@@ -1,7 +1,7 @@
 import React from "react";
-import Circle from "../images/circle.svg";
-import Checked from "../images/circle-cheked.svg";
-import Cross from "../images/icon-cross.svg";
+import Circle from "../assets/circle.svg";
+import Checked from "../assets/circle-cheked.svg";
+import Cross from "../assets/icon-cross.svg";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 type ListOfActivityProps = {

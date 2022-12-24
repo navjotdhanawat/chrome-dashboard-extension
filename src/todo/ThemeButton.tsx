@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import Moon from "../images/icon-moon.svg";
-import Sun from "../images/icon-sun.svg";
+import Moon from "../assets/icon-moon.svg";
+import Sun from "../assets/icon-sun.svg";
 import { ThemeContext } from "./ThemeContext";
 
 function ThemeButton() {

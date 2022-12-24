@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import Clock from "./components/Clock";
+import Clock from "./Clock";
 import { FaArrowsAltH } from "react-icons/fa";
 
 export function Resizeable({ children }: any) {

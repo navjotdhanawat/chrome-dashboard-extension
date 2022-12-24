@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Circle from "../images/circle.svg";
+import Circle from "../assets/circle.svg";
 
 type InputAreaProps = {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>, input: string) => void;

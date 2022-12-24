@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useRef, useState } from "react";
-import { GlobalContext } from "../context";
+import { GlobalContext } from "../util/context";
 import moment, { MomentTimezone } from "moment-timezone";
 import ReactClock from "@uiw/react-clock";
 import dayjs, { DayjsTimezone } from "dayjs";

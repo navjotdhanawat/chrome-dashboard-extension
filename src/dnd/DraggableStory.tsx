@@ -11,12 +11,12 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 
-import Clock from "./components/Clock";
+import Clock from "../components/Clock";
 import { Coordinates } from "@dnd-kit/core/dist/types";
-import { Draggable } from "./dnd/Draggable";
+import { Draggable } from "./Draggable";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
 import { useDispatch } from "react-redux";
-import { WIDGET } from "./actions";
+import { WIDGET } from "../actions";
 
 export enum Axis {
   All,
