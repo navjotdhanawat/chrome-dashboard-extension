@@ -97,14 +97,14 @@ function Todo() {
   };
 
   function handleDrag(result: any) {
-    // console.log(result);
-    if (!result.destination) return;
+    console.log(result);
+    // if (!result.destination) return;
 
-    const items = Array.from(list);
-    const [reordererItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reordererItem);
+    // const items = Array.from(list);
+    // const [reordererItem] = items.splice(result.source.index, 1);
+    // items.splice(result.destination.index, 0, reordererItem);
 
-    setList(items);
+    setList(result);
   }
 
   return (
