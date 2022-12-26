@@ -5,21 +5,15 @@ import InputArea from "./InputArea";
 import ListOfActivity from "./ListOfActivity";
 import Filter from "./InformationAndFilter";
 
-import { list as data } from "./data";
-import { ThemeProvider } from "./ThemeContext";
 import { TODO } from "../actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import uuid from "react-uuid";
 
 function Todo() {
+  const { list } = useSelector((state: any) => state.todo);
   const dispatch = useDispatch();
 
-  const [list, setList] = useState(
-    JSON.parse(localStorage.getItem("activity") || "[]")
-  );
-
-  const [filter, setFilter] = useState(0);
-
-  const [currentId, setCurrent] = useState(1);
+  const [filter, setFilter] = useState("All");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>, input: string) => {
     e.preventDefault();
@@ -27,84 +21,44 @@ function Todo() {
     if (input === "") {
       return;
     }
-    debugger;
-    setList((prev: any) => {
-      return [
-        ...prev,
-        { text: input, status: "onProgress", id: `${currentId + 1}-${input}` },
-      ];
-    });
 
     dispatch({
       type: TODO.ADD,
       payload: {
         text: input,
-        status: "onProgress",
-        id: `${currentId + 1}-${input}`,
+        status: "Active",
+        id: uuid(),
       },
     });
-
-    console.log(list);
   };
 
-  useEffect(() => {
-    localStorage.setItem("activity", JSON.stringify(list));
-    setCurrent(currentId + 1);
-  }, [list]);
-
   // function when check button pressed
-  const checked = (e: any) => {
-    // let newList = list;
-    let idx = e.currentTarget.dataset.index;
-    let newStatus = "";
-
-    if (list[idx].status === "onProgress") {
-      newStatus = "Completed";
-    } else {
-      newStatus = "onProgress";
-    }
-
-    let newList = [...list];
-    newList[idx].status = newStatus;
-
-    // console.log(newList);
-
-    setList(newList);
+  const checked = (id: string) => {
+    dispatch({
+      type: TODO.TOGGLE_STATUS,
+      payload: { id },
+    });
   };
 
   // function when x button pressed
-  const removeOne = (e: any) => {
-    // let newList = list;
-    let idx = e.currentTarget.dataset.index;
-    let newList = [...list];
-    newList.splice(idx, 1);
-
-    console.log(newList);
-
-    setList(newList);
+  const removeOne = (id: string) => {
+    dispatch({
+      type: TODO.REMOVE,
+      payload: { id },
+    });
   };
 
   const removeCompleted = () => {
-    let newList = [];
-
-    for (let i = 0; i < list.length; i++) {
-      if (list[i].status === "onProgress") {
-        newList.push(list[i]);
-      }
-    }
-
-    setList(newList);
+    dispatch({
+      type: TODO.REMOVE_COPLETED,
+    });
   };
 
   function handleDrag(result: any) {
-    console.log(result);
-    // if (!result.destination) return;
-
-    // const items = Array.from(list);
-    // const [reordererItem] = items.splice(result.source.index, 1);
-    // items.splice(result.destination.index, 0, reordererItem);
-
-    setList(result);
+    dispatch({
+      type: TODO.REORDER,
+      payload: result,
+    });
   }
 
   return (
@@ -112,10 +66,8 @@ function Todo() {
       <div className="w-full text-left ">
         <div className="flex justify-between align-middle">
           <h1 className=" text-2xl font-bold dark:text-gray-300">T O D O</h1>
-          <ThemeButton />
         </div>
         <InputArea handleSubmit={handleSubmit} />
-        {/* Input */}
         <ListOfActivity
           list={list}
           filter={filter}

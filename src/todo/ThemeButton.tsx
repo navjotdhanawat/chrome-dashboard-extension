@@ -7,7 +7,10 @@ function ThemeButton() {
   const { theme, setTheme } = useContext(ThemeContext);
 
   return (
-    <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+    <button
+      className=" absolute right-5 top-3"
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+    >
       <img src={theme === "light" ? Moon : Sun} alt="toggle-mode" />
     </button>
   );

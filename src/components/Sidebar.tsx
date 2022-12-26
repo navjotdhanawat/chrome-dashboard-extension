@@ -26,7 +26,7 @@ export const Sidebar: FC = () => {
         top: 0,
         left: 0,
         bottom: 0,
-        width: "280px",
+        width: "180px",
         transition: "transform 0.3s ease-out",
         transform: isOpen ? "translateX(0)" : "translateX(-100%)",
         zIndex: 9,
@@ -58,25 +58,21 @@ export const Sidebar: FC = () => {
 
       <div
         style={{
-          display: "grid",
           gridTemplateColumns: `repeat(${1}, 1fr)`,
-          gridGap: 30,
-          padding: 30,
+          padding: 20,
           height: "100vh",
           overflow: "auto",
         }}
       >
+        <div className=" text-2xl font-bold text-center text-gray-300">
+          W I D G E T S
+        </div>
         {widgets.map(({ id, type, variant }: any) => {
           const DynamicComponent = Components[type];
           return (
             <div
               key={id}
-              className="glass-card"
-              // style={{
-              //   width: clockDimention,
-              //   height: clockDimention,
-              // }}
-
+              className="glass-card mt-4 cursor-pointer"
               onClick={() =>
                 dispatch({
                   type: "ADD_WIDGET",

@@ -10,9 +10,9 @@ type ListOfActivityProps = {
     text: string;
     status: string;
   }[];
-  filter: number;
-  checked: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  removeOne: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  filter: string;
+  checked: (id: string) => void;
+  removeOne: (id: string) => void;
   handleDrag: (e: any) => void;
 };
 
@@ -35,7 +35,7 @@ const ListOfActivity: React.FC<ListOfActivityProps> = ({
       }}
     >
       <SortableList
-        items={list}
+        items={list.filter((item) => [item.status, "All"].includes(filter))}
         onChange={handleDrag}
         renderItem={(item, idx) => (
           <SortableList.Item id={item.id}>
@@ -50,10 +50,10 @@ const ListOfActivity: React.FC<ListOfActivityProps> = ({
               <button
                 data-index={idx}
                 className="w-4 h-4 my-3 mr-4"
-                onClick={(e) => checked(e)}
+                onClick={(e) => checked(item.id)}
               >
                 <img
-                  src={item.status === "onProgress" ? Circle : Checked}
+                  src={item.status === "Active" ? Circle : Checked}
                   className="h-4"
                   alt="LogoCentang"
                 />
@@ -61,7 +61,7 @@ const ListOfActivity: React.FC<ListOfActivityProps> = ({
               <p
                 data-index={idx}
                 className="flex flex-1 w-full my-3 align-middle border-none cursor-pointer input hover:text-blue-600"
-                onClick={(e: any) => checked(e)}
+                onClick={(e: any) => checked(item.id)}
               >
                 {item.status === "Completed" ? (
                   <strike>{item.text}</strike>
@@ -73,7 +73,7 @@ const ListOfActivity: React.FC<ListOfActivityProps> = ({
               <button
                 className="w-4 h-4 my-3 ml-6 "
                 data-index={idx}
-                onClick={(e) => removeOne(e)}
+                onClick={(e) => removeOne(item.id)}
               >
                 <img src={Cross} alt="LogoCross" className="h-3" />
               </button>

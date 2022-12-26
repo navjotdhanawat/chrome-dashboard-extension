@@ -19,6 +19,7 @@ import Calendar from "./components/Calendar";
 import { useSelector } from "react-redux";
 import { widgetReducerType } from "./reducers/widget";
 import { TopSites } from "./components/TopSites";
+import ThemeButton from "./todo/ThemeButton";
 
 const App: FC = () => {
   const [vpHeight, setVpHeight] = useState(window.innerHeight);
@@ -26,37 +27,6 @@ const App: FC = () => {
   const [wallpaper, setWallpaper] = useState(defaultImageUrl);
   const widget: widgetReducerType = useSelector((state: any) => state.widget);
   const handleViewportHeightChange = () => setVpHeight(window.innerHeight);
-
-  useEffect(() => {
-    // getImages()
-    //   .then((url) => {
-    //     console.log(url);
-    //     setWallpaper(url);
-    //   })
-    //   .catch(console.error);
-    // chrome.topSites.get(function (sites) {
-    //   // Loop through the sites and add them to the list
-    //   for (var i = 0; i < sites.length; i++) {
-    //     var site = sites[i];
-    //     console.log(site);
-    //   }
-    // });
-    // chrome.history.search(
-    //   {
-    //     text: "", // Return all history items
-    //     startTime: 0, // Return all history items
-    //     maxResults: 10, // Return the top 10 sites
-    //   },
-    //   function (historyItems) {
-    //     // Loop through the history items and add them to the list
-    //     for (var i = 0; i < historyItems.length; i++) {
-    //       var historyItem = historyItems[i];
-    //       const src = "chrome://favicon/" + historyItem.url;
-    //       console.log("historyItem", historyItem);
-    //     }
-    //   }
-    // );
-  }, []);
 
   useEffect(() => {
     window.addEventListener("resize", handleViewportHeightChange);
@@ -98,29 +68,24 @@ const App: FC = () => {
             /> */}
       <Sidebar />
       <TopSites />
-      {/* <ReactClock
-          width={clockDimention}
-          height={clockDimention}
-          style={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-40%, -50%)',
-          }}
-        /> */}
-
       <div
+        className=" rounded-lg"
         style={{
           height: "85vh",
-          boxShadow: isDrag ? "0px 0px 10px 10px #5b5b5b inset" : "inherit",
+          boxShadow: isDrag ? "0px 0px 5px 5px #FFF inset" : "inherit",
           background: isDrag ? "#0000004d" : "",
-          margin: "0px 8vw 0 8vw",
+          margin: "0px 5vw 0 5vw",
         }}
       >
         {widget?.list?.map(({ type, uuid, coordinates, timezone }) => {
           const DynamicComponent = Components[type];
           return (
-            <DraggableStory key={uuid} uuid={uuid} coordinates={coordinates}>
+            <DraggableStory
+              key={uuid}
+              uuid={uuid}
+              coordinates={coordinates}
+              onDrag={setIsDrag}
+            >
               <DynamicComponent
                 key={uuid + "clock"}
                 timezone={timezone}
@@ -131,17 +96,10 @@ const App: FC = () => {
           );
         })}
 
-        {/* <Todo /> */}
         <Popover>
           <Todo />
         </Popover>
-        {/* <button
-              data-popover-target="popover-user-profile"
-              type="button"
-              className="text-white absolute bottom-5 right-5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              User profile
-            </button> */}
+        <ThemeButton />
       </div>
 
       <Quote />

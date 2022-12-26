@@ -2,7 +2,6 @@ import React, { Children, useState } from "react";
 import {
   DndContext,
   KeyboardSensor,
-  Modifiers,
   MouseSensor,
   PointerActivationConstraint,
   TouchSensor,
@@ -11,7 +10,6 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 
-import Clock from "../components/Clock";
 import { Coordinates } from "@dnd-kit/core/dist/types";
 import { Draggable } from "./Draggable";
 import { restrictToParentElement } from "@dnd-kit/modifiers";
@@ -73,11 +71,10 @@ interface Props {
   activationConstraint?: PointerActivationConstraint;
   axis?: Axis;
   handle?: boolean;
-  modifiers?: Modifiers;
   buttonStyle?: React.CSSProperties;
   style?: React.CSSProperties;
   label?: string;
-  onDrag?: CallableFunction;
+  onDrag: CallableFunction;
   children: any;
   uuid: string;
   coordinates: {
@@ -96,12 +93,12 @@ function DraggableStory({
   axis,
   handle,
   label = "Go ahead, drag me.",
-  modifiers,
   style,
   buttonStyle,
   children,
   uuid,
   coordinates = defaultCoordinates,
+  onDrag,
 }: Props) {
   const dispatch = useDispatch();
   const [{ x, y }, setCoordinates] = useState<Coordinates>(coordinates);
@@ -117,9 +114,9 @@ function DraggableStory({
     <DndContext
       modifiers={[restrictToParentElement]}
       sensors={sensors}
-      // onDragStart={() => onDrag(true)}
+      onDragStart={() => onDrag(true)}
       onDragEnd={({ delta }) => {
-        // onDrag(false);
+        onDrag(false);
         const coordinates = {
           x: x + delta.x,
           y: y + delta.y,

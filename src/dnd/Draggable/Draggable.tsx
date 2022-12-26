@@ -138,9 +138,8 @@ export const Draggable = forwardRef<HTMLButtonElement, Props>(
               size={"15"}
               style={{
                 position: "absolute",
-                bottom: -30,
-                right: 30,
-                // transform: "translate(0%, 100%)",
+                bottom: -20,
+                right: 38,
                 color: "white",
                 rotate: "45deg",
                 cursor: "nwse-resize",
@@ -152,8 +151,8 @@ export const Draggable = forwardRef<HTMLButtonElement, Props>(
               size={"15"}
               style={{
                 position: "absolute",
-                top: -10,
-                right: -15,
+                top: 0,
+                right: -5,
                 color: "white",
                 cursor: "pointer",
                 display: hover ? "initial" : "none",
@@ -170,7 +169,6 @@ export const Draggable = forwardRef<HTMLButtonElement, Props>(
             handle && styles.handle
           )}
           {...listeners}
-          // {...attributes}
           style={
             {
               ...style,
@@ -185,7 +183,7 @@ export const Draggable = forwardRef<HTMLButtonElement, Props>(
             size={"15"}
             style={{
               position: "absolute",
-              top: -12,
+              top: 0,
               right: -5,
               color: "white",
             }}

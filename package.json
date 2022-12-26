@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "Chrome Dashboard",
   "scripts": {
-    "start": "parcel serve src/index.html -p 8080 --open",
+    "start": "parcel serve src/index.html -p 3000 --open",
     "build": "parcel build src/index.html",
     "clean": "rm -rf .parcel-cache dist"
   },
